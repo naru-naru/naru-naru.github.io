@@ -636,18 +636,68 @@ Common
       text-align: center; }
     #page .profile__name {
       font-family: 'YuMincho', sans-serif;
-      font-size: 32px;
+      font-size: 24px;
       color: #333333;
       text-align: center;
-      padding-bottom: 90px; }
+      position: relative;
+      padding-bottom: 200px; }
     #page .profile__textArea {
       margin: 0 auto;
-      width: 720px; }
+      text-align: center; }
       #page .profile__textArea p {
         font-family: 'YuMincho', sans-serif;
-        font-size: 24px;
+        font-size: 18px;
         color: #333333;
         padding-bottom: 1em; }
+    #page .profile__gasket {
+      width: 300px;
+      margin: 0 auto;
+      -webkit-transform-origin: 50% 71.1%;
+      -ms-transform-origin: 50% 71.1%;
+      transform-origin: 50% 71.1%;
+      position: absolute;
+      top: -100%;
+      right: 0;
+      left: 0;
+      -webkit-animation: rotation 15s linear 0s infinite normal;
+      animation: rotation 15s linear 0s infinite normal; }
+
+@-webkit-keyframes rotation {
+  0% {
+    -webkit-transform: rotate3d(1, 0, 1, 0deg);
+    transform: rotate3d(1, 0, 1, 0deg); }
+  100% {
+    -webkit-transform: rotate3d(1, 0, 1, 360deg);
+    transform: rotate3d(1, 0, 1, 360deg); } }
+
+@keyframes rotation {
+  0% {
+    -webkit-transform: rotate3d(1, 0, 1, 0deg);
+    transform: rotate3d(1, 0, 1, 0deg); }
+  100% {
+    -webkit-transform: rotate3d(1, 0, 1, 360deg);
+    transform: rotate3d(1, 0, 1, 360deg); } }
+      #page .profile__gasket__inbox {
+        width: 100%;
+        padding-top: 100%;
+        position: relative; }
+      #page .profile__gasket canvas {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        /*            animation: zoom 7s linear 0s infinite normal;
+            @keyframes zoom {
+            0% {width: 100%; height: 100%;}
+            50% {width: 30%; height: 30%;}
+            100% {width: 100%; height: 100%;}
+            }*/
+        /*           animation: rotation2 8s linear 0s infinite normal;
+            @keyframes rotation2 {
+            0% {transform: rotate3d(1, 0, 1, 0deg);}
+            100% {transform: rotate3d(1, 0, 1, 360deg);}
+            }*/ }
   @media screen and (max-width: 768px) {
     #page .profile__inbox {
       max-width: 100vw;
@@ -662,16 +712,16 @@ Common
       text-align: center; }
     #page .profile__name {
       font-family: 'YuMincho', sans-serif;
-      font-size: 32px;
+      font-size: 24px;
       color: #333333;
       text-align: center;
       padding-bottom: 90px; }
     #page .profile__textArea {
-      margin: 0 auto;
-      width: 90.66667vw; }
+      margin: 0 auto; }
       #page .profile__textArea p {
         font-family: 'YuMincho', sans-serif;
-        font-size: 24px;
+        font-size: 18px;
+        line-height: 1.5;
         color: #333333;
         padding-bottom: 1em; } }
   #page .footer {
