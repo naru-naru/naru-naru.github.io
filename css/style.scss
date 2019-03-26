@@ -180,6 +180,22 @@ Common
                     text-decoration: none;
                     font-family: 'Times New Roman', sans-serif;
                     font-weight: 600;
+                    position: relative;
+                    overflow: hidden;
+                    span{
+                        width: 50%;
+                        height: 1px;
+                        position: absolute;
+                        bottom: 0;
+                        background-color: #666666;
+                        opacity: 0;
+                        &.rightSpan{
+                            right: 100%;
+                        }
+                        &.leftSpan{
+                            left: 100%;
+                        }
+                    }
                     /*&:hover{
                         color: #cccccc;
                     }*/
@@ -217,6 +233,22 @@ Common
                         text-decoration: none;
                         font-family: 'Times New Roman', sans-serif;
                         font-weight: 600;
+                        position: relative;
+                        overflow: hidden;
+                        span{
+                            width: 50%;
+                            height: 1px;
+                            position: absolute;
+                            bottom: 0;
+                            background-color: #666666;
+                            opacity: 0;
+                            &.rightSpan{
+                                right: 100%;
+                            }
+                            &.leftSpan{
+                                left: 100%;
+                            }
+                        }
                         /*&:hover{
                             color: #cccccc;
                         }*/
@@ -244,9 +276,13 @@ Common
             justify-content: flex-end;
             z-index: 3;
             p{
-                height: 10vw;
-                width: 10vw;
+                height: 8vw;
+                width: 8vw;
                 font-size: 0;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
                 a{
                     width: 100%;
                     height: 100%;
@@ -258,13 +294,71 @@ Common
                     display: inline-block;
                     background-color: brown;
                     border-radius: 10vw;
+                    position: relative;
+                    cursor: pointer;
                 }
             }
             &__bar--1{
-                margin: 20% 0 15%;
+                transform-origin: 100% 0;
             }
             &__bar--3{
-                margin: 15% 0 20%;
+                transform-origin: 100% 100%;
+            }
+            /* animation */
+            &__bar--1.bar-on{
+                animation: bar1-1 .3s forwards;
+
+                @keyframes bar1-1{
+                    0%{transform: rotate(0deg);
+                        width: 100%;}
+                    100%{transform: rotate(-45deg);
+                    width: 110%;}
+                }
+            }
+            &__bar--1.bar-off{
+                animation: bar1-2 .3s forwards;
+
+                @keyframes bar1-2{
+                    0%{transform: rotate(-45deg);
+                    width: 110%;}
+                    100%{transform: rotate(0deg);
+                    width: 100%;}
+                }
+            }
+            &__bar--2.bar-on{
+                animation: bar2-1 .3s forwards;
+
+                @keyframes bar2-1{
+                    0%{opacity: 1;
+                    }
+                    100%{opacity: 0;}
+                }
+            }
+            &__bar--2.bar-off{
+                animation: bar2-2 .3s forwards;
+
+                @keyframes bar2-2{
+                    0%{opacity: 0;}
+                    100%{opacity: 1;}
+                }
+            }
+            &__bar--3.bar-on{
+                animation: bar3-1 .3s forwards;
+
+                @keyframes bar3-1{
+                    0%{transform: rotate(0deg); width: 100%;}
+                    100%{transform: rotate(45deg);
+                    width: 110%; top: 3px;}
+                }
+            }
+            &__bar--3.bar-off{
+                animation: bar3-2 .3s forwards;
+
+                @keyframes bar3-2{
+                    0%{transform: rotate(45deg);
+                        width: 110%; top: 3px;}
+                    100%{transform: rotate(0deg);width: 100%;}
+                }
             }
         }
         &__body{
@@ -279,21 +373,86 @@ Common
     }
 }
 
+/* icon Animation */
+.hover-on{
+    animation: hoverOn 0.5s ease 0s normal forwards;
+}
+@keyframes hoverOn{
+    0%{bottom: 0;}
+    50%{bottom: 7px;}
+    100%{bottom: 2px;}
+}
+.hover-off{
+    animation: hoverOff 0.5s ease 0s normal forwards;
+}
+@keyframes hoverOff{
+    0%{bottom: 2px;}
+    50%{bottom: 7px;}
+    100%{bottom: 0;}
+}
+
+
+
+
+.hover-on .rightSpan{
+    animation: onBarRight 0.5s ease 0s normal forwards;
+}
+@keyframes onBarRight{
+    0%{right: 100%;
+        opacity: 0;}
+    100%{right: 0;
+        opacity: 1;}
+}
+.hover-off .rightSpan{
+    animation: offBarRight 0.5s ease 0s normal forwards;
+}
+@keyframes offBarRight{
+    0%{right: 0;
+        opacity: 1;}
+    100%{right: 100%;
+        opacity: 0;}
+}
+.hover-on .leftSpan{
+    animation: onBarLeft 0.5s ease 0s normal forwards;
+}
+@keyframes onBarLeft{
+    0%{left: 100%;
+        opacity: 0;}
+    100%{left: 0;
+        opacity: 1;}
+}
+.hover-off .leftSpan{
+    animation: offBarLeft 0.5s ease 0s normal forwards;
+}
+@keyframes offBarLeft{
+    0%{left: 0;
+        opacity: 1;}
+    100%{left: 100%;
+        opacity: 0;}
+}
+
 
 .top{
     width: 100vw;
 /*    height: calc(100vh - 12vh);*/
-    margin-bottom: 12vh;
+/*    padding-bottom: 12vh;*/
     display: inline-block;
     &__inbox{
         width: 100%;
-        height: calc(100vh - 12vh);
-        max-width: 1440px;
+        padding-top: 100vh;
+       /* max-width: 1440px;*/
         position: relative;
+        #cvs{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
     }
     &__text{
         position: absolute;
-        bottom: 0;
+        bottom: 12vh;
         right: 8.6%;
         text-align: right;
         font-family: 'YuMincho', sans-serif;
@@ -317,13 +476,12 @@ Common
         &__inbox{
             width: 100%;
             height: 70vh;
-            max-width: 300px;
             margin: 0 auto;
         }
         &__text{
-            position: static;
+            right: 0;
+            left: 0;
             margin: 0 auto;
-            margin-top: 30vh;
             text-align: center;
             font-family: 'YuMincho', sans-serif;
             &__subject{
@@ -341,6 +499,148 @@ Common
     }
 }
 
+
+/* gallery */
+.gallery{
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+    &__inbox{
+        max-width: 100vw;
+        margin-left: 316px;
+        padding: 0 30px;
+    }
+    &__title{
+        margin: 0 auto;
+        padding: 170px 0 120px;
+        font-family: 'YuMincho', sans-serif;
+        font-size: 32px;
+        color: #333333;
+        text-align: center;
+    }
+    &__list{
+        width: 100%;
+        margin: 0 auto 30px;
+        &__item{
+            width: 330px;
+            padding: 5px;
+            &:hover{
+                opacity: 0.8;
+                transition: 0.5s;
+            }
+            img{
+                border-radius: 5%;
+            }
+        }
+    }
+}
+@media screen and (max-width:768px) {
+    .gallery{
+        width: 100vw;
+        height: auto;
+        min-height: 100vh;
+        &__inbox{
+            max-width: 100vw;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        &__title{
+            margin: 0 auto;
+            padding: 170px 0 120px;
+            font-family: 'YuMincho', sans-serif;
+            font-size: 32px;
+            color: #333333;
+            text-align: center;
+        }
+        &__list{
+            width: 100%;
+            margin: 0 auto 30px;
+            &__item{
+                width: 330px;
+                padding: 5px;
+                img{
+                    border-radius: 5%;
+                }
+            }
+        }
+    }
+}
+
+/* profile */
+.profile{
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+    &__inbox{
+        max-width: 100vw;
+        margin-left: 316px;
+        padding: 0 30px;
+    }
+    &__title{
+        margin: 0 auto;
+        padding: 170px 0 120px;
+        font-family: 'YuMincho', sans-serif;
+        font-size: 32px;
+        color: #333333;
+        text-align: center;
+    }
+    &__name{
+        font-family: 'YuMincho', sans-serif;
+        font-size: 32px;
+        color: #333333;
+        text-align: center;
+        padding-bottom: 90px;
+    }
+    &__textArea{
+        margin: 0 auto;
+        width: 720px;
+        p{
+            font-family: 'YuMincho', sans-serif;
+            font-size: 24px;
+            color: #333333;
+            padding-bottom: 1em;
+        }
+    }
+}
+@media screen and (max-width:768px) {
+    .profile{
+        &__inbox{
+            max-width: 100vw;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        &__title{
+            margin: 0 auto;
+            padding: 170px 0 120px;
+            font-family: 'YuMincho', sans-serif;
+            font-size: 32px;
+            color: #333333;
+            text-align: center;
+        }
+        &__name{
+            font-family: 'YuMincho', sans-serif;
+            font-size: 32px;
+            color: #333333;
+            text-align: center;
+            padding-bottom: 90px;
+        }
+        &__textArea{
+            margin: 0 auto;
+            width: (68000vw/750);
+            p{
+                font-family: 'YuMincho', sans-serif;
+                font-size: 24px;
+                color: #333333;
+                padding-bottom: 1em;
+            }
+        }
+    }
+}
+
+
+
+
+
 .footer{
     width: 100vw;
     background-color: #3a3735;
@@ -349,13 +649,12 @@ Common
     &__inbox{
         width: 100%;
         height: 12vh;
-        max-width: 1366px;
         display: flex;
         align-items: center;
     }
     &__name{
         font-size: 30px;
-        font-family: 'Gautreaux', sans-serif;
+        font-family: 'Allura', 'Pinyon Script', 'Gautreaux', sans-serif;
         color: #c9c7c3;
         margin: 0 auto;
     }
@@ -376,7 +675,20 @@ Common
 
 
 }
-
+#loading{
+position: absolute;
+left: 50%;
+top: 30%;
+}
+#loader-bg {
+position: fixed;
+width: 100%;
+height: 100%;
+top: 0px;
+left: 0px;
+background: #FFF;
+z-index: 4;
+}
 
 
 @media screen and (max-width:768px) {
